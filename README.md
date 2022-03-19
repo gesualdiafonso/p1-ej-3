@@ -10,3 +10,17 @@
   - La minima y maxima nota ingresada
 
 Se desconoce la cantidad de notas
+
+## Entrega
+
+- Clonar este repositorio localmente
+- Crear un repositorio personal con el nombre `dw-p1-03`
+- Modificar este `README.md` con este contenido:
+
+```markdown
+### Alumno: ...
+
+#### Comision: ...
+```
+
+- Subir los archivos `index.html`, `index.js` y `README.md`
