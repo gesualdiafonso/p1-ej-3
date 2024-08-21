@@ -1,43 +1,72 @@
 "use strict";
+//while(){
+    
+//};
+//do() {
+    //Primero hace después
+//} while();
 
-let notas = [];
-let nota;
-let sumDesaprobados = 0, countDesaprobados = 0;
-let sumAprobados = 0, countAprobados = 0;
-let sumPromocionados = 0, countPromocionados = 0;
-let minNota = 10, maxNota = 0;
-do {
-    nota = parseFloat(prompt("Ingresa una nota (o ingresa un número negativo para terminar):"));
-    if (nota >= 0 && nota <= 10) {
-        notas.push(nota);
+//for(){
 
-        // Calcular mínimos y máximos
-        if (nota < minNota) minNota = nota;
-        if (nota > maxNota) maxNota = nota;
+//}; 
 
-        // Clasificación y acumulación de notas
-        if (nota < 4) {
-            sumDesaprobados += nota;
-            countDesaprobados++;
-        } else {
-            sumAprobados += nota;
-            countAprobados++;
 
-            if (nota >= 7) {
-                sumPromocionados += nota;
-                countPromocionados++;
-            }
+//let AcumuladorDesaprobados, AcumuladorAprobados, AcumuladorPromocionados; //PascalCase
+//let contador_desaprobados, contador_aprobados, contador_promocionado //SnakeCase
+
+//Contadores son todos los valores que vao arrancar de 0 e se somar dentro 
+let contadorDesaprobado = 0, contadorAprobado = 0, contadorPromocionados = 0; //camelCase 
+//Acumuladores sao as variaveis que estao sendo acumulada desde seu numero 0
+let acumuladoresDesaprobados = 0, acumuludoresAprobados = 0, acumuladoresPromocionados = 0;
+//Variaveis para maximos e minimos 
+let minNota = 1, maxNota = 10;
+
+do{
+    let nota = parseInt(prompt("Ingrese una nota (1 a 10)"));
+
+    //Empiezo a preguntar
+    if (nota < 4){
+    
+        //Desaprobado
+        //Estamos somando os valores das notas para sabermos quantos estão desaprovados
+        contadorDesaprobado = contadorDesaprobado +1;
+        acumuladoresDesaprobados = acumuladoresDesaprobados + nota;
+    }
+    else{
+        //Aprobado
+
+        //Estamos somando os valores das notas para sabermos quantos estão aprovados
+
+        contadorAprobado++; // Do mesmo fuckin valor de sima só que resumida 
+        acumuladoresAprobados =+ nota; 
+        //Preguntamos si promociono o no
+        if (nota >=7){
+            //Promocionado
+
+            //Estamos somando os valores das notas para sabermos quantos estão promocionados.
+            contadorPromocionados++;
+            acumuladoresDesaprobados += nota;
         }
     }
-} while (nota >= 0);
 
-let promedioDesaprobados = countDesaprobados ? (sumDesaprobados / countDesaprobados).toFixed(2) : 0;
-let promedioAprobados = countAprobados ? (sumAprobados / countAprobados).toFixed(2) : 0;
-let promedioPromocionados = countPromocionados ? (sumPromocionados / countPromocionados).toFixed(2) : 0;
+    //Pregunto si la nueva nota es mayor a la anterior
+    if(nota > maxNota){
+        //Caso seja assim, vamos encontrar um novo maximo
+        maxNota = nota;
+    }
+    //Pergunto si a nova nota e menor a anterior
+    if(nota < minNota){
+        //Caso seja assim, vamos encontrar um novo minimo
+        minNota = nota;
+    }
 
-// Mostrar resultados
-console.log(`Promedio de alumnos desaprobados: ${promedioDesaprobados}`);
-console.log(`Promedio de alumnos aprobados: ${promedioAprobados}`);
-console.log(`Promedio de alumnos promocionados: ${promedioPromocionados}`);
-console.log(`Nota mínima ingresada: ${minNota}`);
-console.log(`Nota máxima ingresada: ${maxNota}`);
+} while(confirm("Otra nota?"));
+
+//Uma vez que se vão carregar as notas, sacamos los promedios
+alert(`Hubo ${contadorDesaprobado} alumnos Desaprobados y su nota promedio fue de ${(acumuladoresDesaprobados / contadorDesaprobado).toFixed(1)}`); // las ``así son para usar contas o variables a ser declarada
+alert(`Hubo ${contadorAprobado} alumnos Aprobados y su nota promedio fue de ${(acumuludoresAprobados / contadorAprobado).toFixed(1)}`);
+alert(`Hubo ${contadorPromocionados} alumnos Promocionados y su nota promedio fue de ${(acumuladoresPromocionados / contadorPromocionados).toFixed(1)}`); //to.FixedCuantas caracter de decimales queremos ver en los valores ingresado
+//to.Fixed es un method dado para dar un Number que convierte en un string
+
+alert(`La nota minima del curso fue${minNota}`);
+alert(`La nota maxima del curso fue${maxNota}`);
